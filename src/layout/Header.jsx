@@ -188,7 +188,7 @@ const Header = () => {
                       </li>
                       <li className="nav-item">
                         <Link
-                          to="/"
+                          to="/about"
                           className="nav-link active"
                           aria-current="page"
                         >
