@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "../assets/sass/style.scss";
 import { Link } from "react-router-dom";
-import { ModeConext } from "../context/ModeContext";
+import { ModeContext } from "../context/ModeContext";
 
 const Header = () => {
   const [stopAnimation, setStopAnimation] = useState(false);
-  const [changeMode, setChangeMode] = useContext(ModeConext);
+  const [changeMode, setChangeMode] = useContext(ModeContext);
   const [openMenu, setOpenMenu] = useState(false);
 
   const turnDarkMode = () => {
     setChangeMode("dark");
-    localStorage.setItem("mode", "dark");
   };
   const turnLightMode = () => {
     setChangeMode("light");
-    localStorage.getItem("mode", "light");
   };
 
   const handleStop = () => {
@@ -25,7 +23,10 @@ const Header = () => {
   };
 
   return (
-    <div className={changeMode === "light" ? "header" : "dark-header"}>
+    <div
+      className={changeMode === "light" ? "header" : "dark-header"}
+      id="upper"
+    >
       <div
         className="upper-container"
         onMouseEnter={handleStop}
@@ -75,8 +76,8 @@ const Header = () => {
                 <path
                   d="M3 7H21M3 12H21M3 17H21"
                   stroke="#556328"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
             </button>
@@ -86,7 +87,6 @@ const Header = () => {
                   <div className="upper-part">
                     <div className="search-part">
                       <input type="text" placeholder="Search..." />
-
                       <div className="search">
                         <svg
                           width="27"
@@ -98,9 +98,9 @@ const Header = () => {
                           <path
                             d="M24.75 24.75L22.5 22.5M23.625 12.9375C23.625 18.84 18.84 23.625 12.9375 23.625C7.03496 23.625 2.25 18.84 2.25 12.9375C2.25 7.03496 7.03496 2.25 12.9375 2.25C18.84 2.25 23.625 7.03496 23.625 12.9375Z"
                             stroke="#6D692E"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -123,9 +123,9 @@ const Header = () => {
                             <path
                               d="M19.8021 5.19792L19.9375 5.0625M5.06254 19.9375L5.19796 19.8021M12.5 2.16667V2.08334M12.5 22.9167V22.8333M2.16671 12.5H2.08337M22.9167 12.5H22.8334M5.19796 5.19792L5.06254 5.0625M19.9375 19.9375L19.8021 19.8021M19.2709 12.5C19.2709 16.2394 16.2395 19.2708 12.5 19.2708C8.76061 19.2708 5.72921 16.2394 5.72921 12.5C5.72921 8.76057 8.76061 5.72917 12.5 5.72917C16.2395 5.72917 19.2709 8.76057 19.2709 12.5Z"
                               stroke="#F5BBB9"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                           </svg>
                         </div>
@@ -145,9 +145,9 @@ const Header = () => {
                             <path
                               d="M2.1146 12.9375C2.4896 18.3021 7.04168 22.6667 12.4896 22.9062C16.3333 23.0729 19.7708 21.2812 21.8333 18.4583C22.6875 17.3021 22.2292 16.5312 20.8021 16.7917C20.1042 16.9167 19.3854 16.9687 18.6354 16.9375C13.5417 16.7292 9.37501 12.4687 9.35418 7.4375C9.34376 6.08333 9.62501 4.80208 10.1354 3.63541C10.6979 2.34375 10.0208 1.72916 8.71876 2.28125C4.59376 4.02083 1.77085 8.17708 2.1146 12.9375Z"
                               stroke="#F5BBB9"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                           </svg>
                         </div>
@@ -161,13 +161,27 @@ const Header = () => {
                         </div>
                       </div>
                     </div>
+                    <button
+                      style={{
+                        backgroundColor: "transparent",
+                        border: "none",
+                        color: "white",
+                      }}
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
+                    >
+                      <div className="close-menu">
+                        <h3>x</h3>
+                      </div>
+                    </button>
                   </div>
                   <div className="nav-part">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                       <li className="nav-item">
                         <Link
                           to="/"
-                          class="nav-link active"
+                          className="nav-link active"
                           aria-current="page"
                         >
                           Home
@@ -175,8 +189,8 @@ const Header = () => {
                       </li>
                       <li className="nav-item">
                         <Link
-                          to="/"
-                          class="nav-link active"
+                          to="/about"
+                          className="nav-link active"
                           aria-current="page"
                         >
                           About Us
@@ -185,7 +199,7 @@ const Header = () => {
                       <li className="nav-item">
                         <Link
                           to="/"
-                          class="nav-link active"
+                          className="nav-link active"
                           aria-current="page"
                         >
                           FAQ
@@ -194,7 +208,7 @@ const Header = () => {
                       <li className="nav-item">
                         <Link
                           to="/"
-                          class="nav-link active"
+                          className="nav-link active"
                           aria-current="page"
                         >
                           Contact Us
@@ -212,9 +226,9 @@ const Header = () => {
                         <path
                           d="M32.3556 32.0833C32.3556 26.4396 26.3057 21.875 18.8571 21.875C11.4085 21.875 5.35852 26.4396 5.35852 32.0833M26.7142 10.2083C26.7142 14.2354 23.1965 17.5 18.8571 17.5C14.5177 17.5 10.9999 14.2354 10.9999 10.2083C10.9999 6.18126 14.5177 2.91667 18.8571 2.91667C23.1965 2.91667 26.7142 6.18126 26.7142 10.2083Z"
                           stroke="#6D692E"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                       <svg
@@ -227,9 +241,9 @@ const Header = () => {
                         <path
                           d="M19.9743 30.3479C19.4401 30.5229 18.5601 30.5229 18.0258 30.3479C13.4686 28.9042 3.28577 22.8812 3.28577 12.6729C3.28577 8.16666 7.19862 4.52083 12.0229 4.52083C14.8829 4.52083 17.4129 5.80416 19.0001 7.7875C20.5872 5.80416 23.1329 4.52083 25.9772 4.52083C30.8015 4.52083 34.7143 8.16666 34.7143 12.6729C34.7143 22.8812 24.5315 28.9042 19.9743 30.3479Z"
                           stroke="#6D692E"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                       <svg
@@ -267,9 +281,9 @@ const Header = () => {
               <path
                 d="M24.75 24.75L22.5 22.5M23.625 12.9375C23.625 18.84 18.84 23.625 12.9375 23.625C7.03496 23.625 2.25 18.84 2.25 12.9375C2.25 7.03496 7.03496 2.25 12.9375 2.25C18.84 2.25 23.625 7.03496 23.625 12.9375Z"
                 stroke="#6D692E"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -290,9 +304,9 @@ const Header = () => {
                 <path
                   d="M19.8021 5.19792L19.9375 5.0625M5.06254 19.9375L5.19796 19.8021M12.5 2.16667V2.08334M12.5 22.9167V22.8333M2.16671 12.5H2.08337M22.9167 12.5H22.8334M5.19796 5.19792L5.06254 5.0625M19.9375 19.9375L19.8021 19.8021M19.2709 12.5C19.2709 16.2394 16.2395 19.2708 12.5 19.2708C8.76061 19.2708 5.72921 16.2394 5.72921 12.5C5.72921 8.76057 8.76061 5.72917 12.5 5.72917C16.2395 5.72917 19.2709 8.76057 19.2709 12.5Z"
                   stroke="#F5BBB9"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -310,9 +324,9 @@ const Header = () => {
                 <path
                   d="M2.1146 12.9375C2.4896 18.3021 7.04168 22.6667 12.4896 22.9062C16.3333 23.0729 19.7708 21.2812 21.8333 18.4583C22.6875 17.3021 22.2292 16.5312 20.8021 16.7917C20.1042 16.9167 19.3854 16.9687 18.6354 16.9375C13.5417 16.7292 9.37501 12.4687 9.35418 7.4375C9.34376 6.08333 9.62501 4.80208 10.1354 3.63541C10.6979 2.34375 10.0208 1.72916 8.71876 2.28125C4.59376 4.02083 1.77085 8.17708 2.1146 12.9375Z"
                   stroke="#F5BBB9"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -349,8 +363,8 @@ const Header = () => {
                 <path
                   d="M3 7H21M3 12H21M3 17H21"
                   stroke="#556328"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
             </button>
@@ -360,22 +374,26 @@ const Header = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link to="/" class="nav-link active" aria-current="page">
+                  <Link to="/" className="nav-link active" aria-current="page">
                     Home
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/" class="nav-link active" aria-current="page">
+                  <Link
+                    to="/about"
+                    className="nav-link active about"
+                    aria-current="page"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/" class="nav-link active" aria-current="page">
+                  <Link to="/" className="nav-link active" aria-current="page">
                     FAQ
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/" class="nav-link active" aria-current="page">
+                  <Link to="/" className="nav-link active" aria-current="page">
                     Contact Us
                   </Link>
                 </li>
@@ -391,9 +409,9 @@ const Header = () => {
                   <path
                     d="M32.3556 32.0833C32.3556 26.4396 26.3057 21.875 18.8571 21.875C11.4085 21.875 5.35852 26.4396 5.35852 32.0833M26.7142 10.2083C26.7142 14.2354 23.1965 17.5 18.8571 17.5C14.5177 17.5 10.9999 14.2354 10.9999 10.2083C10.9999 6.18126 14.5177 2.91667 18.8571 2.91667C23.1965 2.91667 26.7142 6.18126 26.7142 10.2083Z"
                     stroke="#6D692E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <svg
@@ -406,9 +424,9 @@ const Header = () => {
                   <path
                     d="M19.9743 30.3479C19.4401 30.5229 18.5601 30.5229 18.0258 30.3479C13.4686 28.9042 3.28577 22.8812 3.28577 12.6729C3.28577 8.16666 7.19862 4.52083 12.0229 4.52083C14.8829 4.52083 17.4129 5.80416 19.0001 7.7875C20.5872 5.80416 23.1329 4.52083 25.9772 4.52083C30.8015 4.52083 34.7143 8.16666 34.7143 12.6729C34.7143 22.8812 24.5315 28.9042 19.9743 30.3479Z"
                     stroke="#6D692E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <svg

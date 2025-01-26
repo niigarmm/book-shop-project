@@ -2,10 +2,7 @@
 .dark-header {
   transition: 0.5s;
   .upper-container {
-    transition: 0.5s;
-    background-color: #e0e0a0;
-    height: 47px;
-    width: 100%;
+    @include middle();
     overflow: hidden;
     white-space: nowrap;
     position: relative;
@@ -54,7 +51,7 @@
       display: none;
     }
     height: 120px;
-    padding-inline: 50px;
+    padding-inline: 80px;
     justify-content: space-between;
     h1 {
       font-family: "Modak", serif;
@@ -151,7 +148,7 @@
   .navbar {
     height: 96px;
     @include border();
-    padding-inline: 50px;
+    padding-inline: 80px;
 
     .icons-cat {
       display: flex;
@@ -222,9 +219,7 @@
           background-color: #354660 !important;
           svg {
             path {
-              stroke {
-                color: white !important;
-              }
+              stroke: white !important;
             }
           }
         }
@@ -251,6 +246,16 @@
     }
   }
 }
+.dark {
+  transition: 0.5s;
+  background-color: #354660;
+  color: white !important;
+  svg {
+    path {
+      fill: white;
+    }
+  }
+}
 @media (max-width: 1089px) {
   .search-part {
     width: 50% !important;
@@ -260,7 +265,6 @@
   }
 }
 @media (max-width: 992px) {
-
   .search-part,
   .mode-lang,
   .bottom-container {
@@ -280,6 +284,7 @@
 
       .menu-container {
         display: flex !important;
+        z-index: 10000;
 
         .openMenu {
           width: 90%;
@@ -288,13 +293,34 @@
           left: 20px !important;
           height: auto !important;
           padding-inline: 30px;
+          padding-top: 90px;
           padding-block: 30px !important;
           background-color: white !important;
           box-shadow: 0px 0px 10px 2px rgb(236, 236, 236);
           border-radius: 20px;
+          .close-menu {
+            color: white;
+            background-color: #5d5d29;
+            height: 30px;
+            width: 30px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            h3 {
+              font-size: 20px;
+            }
+          }
+
           .upper-part {
             display: flex;
             justify-content: space-between;
+            align-items: center;
           }
           .nav-part {
             display: flex;
@@ -324,6 +350,20 @@
   .dark-header {
     .middle-container {
       .menu-container {
+        .close-menu {
+          color: white;
+          background-color: #16202e !important;
+          height: 30px;
+          width: 30px !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top: 3px;
+          h3 {
+            font-size: 20px;
+          }
+        }
+        
         .openMenu {
           background-color: #354660 !important;
           box-shadow: 0px 0px 5px 2px #16202e;
@@ -365,12 +405,13 @@
     .openMenu {
       .upper-part {
         flex-direction: column !important;
+        align-items: flex-start !important;
         gap: 40px;
         .search-part {
-          width: 100% !important;
+          width: 80% !important;
         }
         .mode-lang {
-          width: 100% !important;
+          width: 80% !important;
         }
       }
     }
@@ -392,10 +433,5 @@
   }
   .bottom-container {
     display: none;
-  }
-}
-@media (max-width: 430px) {
-  .middle-container {
-    padding: 10px !important;
   }
 }

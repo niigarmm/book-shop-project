@@ -1,15 +1,16 @@
 import { createContext, useEffect, useState } from "react";
-export const ModeConext = createContext();
+export const ModeContext = createContext();
 
 export const ModeProvider = ({ children }) => {
-  const [changeMode, setChangeMode] = useState(localStorage.getItem("mode"));
+  const [changeMode, setChangeMode] = useState(localStorage.getItem("mode") || "light");
   useEffect(() => {
-    localStorage.setItem("mode", "light");
-  }, []);
+    localStorage.setItem("mode", changeMode);
+  }, [changeMode]);
 
   return (
-    <ModeConext.Provider value={[changeMode, setChangeMode]}>
+    <ModeContext.Provider value={[changeMode, setChangeMode]}>
       {children}
-    </ModeConext.Provider>
+    </ModeContext.Provider>
   );
 };
+ 
