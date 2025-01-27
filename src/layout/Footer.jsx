@@ -137,7 +137,7 @@ const Footer = () => {
                 </Link>
               </p>
               <p>
-                <Link to="/" className="text-reset">
+                <Link to="/about" className="text-reset" style={{color:"red"}}>
                   About Us
                 </Link>
               </p>
