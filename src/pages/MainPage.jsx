@@ -7,6 +7,7 @@ const MainPage = () => {
   return (
     <div className="main-page">
       <Header />
+      <h1>hello</h1>
       <Footer />
     </div>
   );
